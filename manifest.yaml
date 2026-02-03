@@ -2,28 +2,17 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: app1
+  namespace: argocd
 spec:
-  destination:
-    namespace: ''
-    server: https://kubernetes.default.svc
-  source:
-    path: .
-    repoURL: https://github.com/dorongrinstein/argo1.git
-    targetRevision: HEAD
-  sources: []
   project: default
+  source:
+    repoURL: https://github.com/dorongrinstein/argo1.git
+    path: .
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default  # Changed from '' to 'default' for safety
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-project: default
-source:
-  repoURL: https://github.com/dorongrinstein/argo1.git
-  path: .
-  targetRevision: HEAD
-destination:
-  server: https://kubernetes.default.svc
-syncPolicy:
-  automated:
-    prune: true
-    selfHeal: true
