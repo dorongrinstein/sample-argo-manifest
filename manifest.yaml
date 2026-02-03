@@ -11,7 +11,7 @@ spec:
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: default  # Changed from '' to 'default' for safety
+    namespace: default
   syncPolicy:
     automated:
       prune: true
